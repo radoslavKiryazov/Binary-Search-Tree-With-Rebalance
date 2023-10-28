@@ -1,9 +1,12 @@
+package main;
+
 import java.util.ArrayList;
 
-public class BinarySearchTreeADT<T extends Comparable<T>> extends BinaryTree<T> {
+public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
 
-    private boolean insert(T element) {
+    public boolean insert(T element) {
+        if(contains(element)) return false;
         if (element == null) return false;
         var newNode = new BinaryTreeNode<>(element);
 
@@ -12,7 +15,7 @@ public class BinarySearchTreeADT<T extends Comparable<T>> extends BinaryTree<T> 
             return true;
         }
 
-        BinaryTreeNode<T> currentRoot = getRoot();
+        var currentRoot = getRoot();
 
         while (currentRoot != null) {
             int compare = element.compareTo(currentRoot.getElement());
@@ -22,6 +25,7 @@ public class BinarySearchTreeADT<T extends Comparable<T>> extends BinaryTree<T> 
                     currentRoot.addLeftChild(newNode);
                     return true;
                 }
+                currentRoot = currentRoot.getLeftChild(); // Fix this line
             } else if (compare > 0) {
                 if (currentRoot.getRightChild() == null) {
                     currentRoot.addRightChild(newNode);

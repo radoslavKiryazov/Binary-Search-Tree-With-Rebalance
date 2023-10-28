@@ -1,10 +1,10 @@
-import java.sql.Array;
+package main;
+
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Stack;
 
 public class BinaryTree<T> {
+
     BinaryTreeNode<T> root;
 
     public BinaryTreeNode<T> getRoot() {
@@ -94,7 +94,7 @@ public class BinaryTree<T> {
                 stack.push(current);
                 result.add(0, current.getElement());
                 current = current.getRightChild();
-        } else {
+            } else {
                 current = stack.pop();
                 current = current.getLeftChild();
             }
